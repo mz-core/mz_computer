@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR" style="background:transparent">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>MZ OS</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="desktop.css?v=1.3.3">
+</head>
+<body style="background:transparent">
+  <main id="computer-root" class="is-hidden" aria-hidden="true" style="display:none;visibility:hidden;opacity:0;pointer-events:none">
+    <section id="device-shell" aria-label="Computador MZ">
+      <div id="os-viewport">
+        <div id="os-root" class="theme-dark wallpaper-midnight">
+          <section id="boot-screen" class="screen-layer boot-screen">
+            <div class="mz-mark large">MZ</div>
+            <div class="boot-name">MZ OS</div>
+            <div class="boot-loader" aria-label="Inicializando"><span></span><span></span><span></span></div>
+          </section>
+
+          <section id="auth-screen" class="screen-layer auth-screen hidden">
+            <div class="auth-backdrop"></div>
+            <div class="auth-intro"><span class="eyebrow">MZ OS / PERSONAL COMPUTER</span><h2>Seu mundo.<br>Na sua tela.</h2><p>Uma conta. Seus arquivos, suas ideias<br>e os serviços da cidade.</p></div>
+            <button class="auth-power icon-button" data-action="shutdown" title="Desligar" aria-label="Desligar"><i class="lucide" data-icon="power"></i></button>
+            <div class="auth-panel">
+              <div class="mz-mark">MZ</div>
+              <h1>MZ OS</h1>
+              <p id="auth-subtitle">Entre na sua conta digital</p>
+              <form id="auth-form" autocomplete="off">
+                <label>Usuário<input id="username" name="username" maxlength="32" spellcheck="false" autocomplete="off" placeholder="seu.usuario"></label>
+                <label>Senha<input id="password" name="password" type="password" maxlength="128" autocomplete="new-password" placeholder="••••••••"></label>
+                <label id="confirm-wrap" class="hidden">Confirmar senha<input id="password-confirm" name="password-confirm" type="password" maxlength="128" autocomplete="new-password" placeholder="••••••••"></label>
+                <button id="auth-submit" class="primary" type="submit">Entrar</button>
+              </form>
+              <button id="auth-toggle" class="text-button" type="button">Criar uma conta</button>
+              <p id="auth-warning" class="security-note">Use uma senha somente para seu personagem.</p>
+              <p id="auth-error" class="form-error" role="alert"></p>
+            </div>
+            <div class="lock-clock"><strong id="lock-time">00:00</strong><span id="lock-date"></span></div>
+          </section>
+
+          <section id="desktop" class="screen-layer desktop hidden">
+            <div class="wallpaper-art" aria-hidden="true"><div></div><div></div><div></div></div>
+            <div class="desktop-watermark" aria-hidden="true"><span>MZ</span><small>MAKE IT YOURS.</small></div>
+            <aside class="desktop-widget"><span class="eyebrow" id="desktop-weekday"></span><strong id="desktop-time">00:00</strong><p id="desktop-greeting">Bem-vindo ao seu espaço.</p><div class="network-label"><i class="lucide" data-icon="wifi"></i><span id="desktop-network">MZ Net</span><span class="status-dot"></span></div></aside>
+            <div id="desktop-icons" class="desktop-icons" aria-label="Aplicativos"></div>
+            <div id="window-layer" class="window-layer"></div>
+            <aside id="launcher" class="launcher panel hidden">
+              <div class="launcher-head"><strong>MZ OS</strong><span id="launcher-user"></span></div>
+              <label class="launcher-search"><i class="lucide" data-icon="search"></i><input id="app-search" type="search" placeholder="Pesquisar aplicativos" autocomplete="off" aria-label="Pesquisar aplicativos"></label>
+              <div class="launcher-section">Aplicativos <span id="app-count"></span></div>
+              <div id="launcher-apps" class="launcher-apps"></div>
+              <p id="app-search-empty" class="empty-state hidden">Nenhum aplicativo encontrado.</p>
+              <div class="launcher-footer"><button data-action="profile"><i class="lucide" data-icon="user-round"></i> Meu perfil</button><button data-action="lock" title="Sair da conta"><i class="lucide" data-icon="log-out"></i> Sair da conta</button></div>
+            </aside>
+            <aside id="power-menu" class="power-menu panel hidden"><strong>Encerrar sessão</strong><p>Como deseja sair?</p><button data-action="lock"><i class="lucide" data-icon="log-out"></i> Sair da conta</button><button data-action="shutdown"><i class="lucide" data-icon="power"></i> Desligar computador</button></aside>
+            <aside id="notification-center" class="notification-center panel hidden">
+              <div class="panel-title"><strong>Notificações</strong><button data-action="close-notifications">×</button></div>
+              <div id="notification-list" class="notification-list"></div>
+            </aside>
+            <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+            <footer class="taskbar">
+              <button id="start-button" class="taskbar-button mz-start" title="MZ">MZ</button>
+              <button id="search-button" class="taskbar-button search-button" title="Pesquisar aplicativos (F3)" aria-label="Pesquisar aplicativos"><i class="lucide" data-icon="search"></i><span>Pesquisar</span></button>
+              <span class="taskbar-divider"></span>
+              <div id="taskbar-apps" class="taskbar-apps"></div>
+              <div class="taskbar-spacer"></div>
+              <span class="tray-network" title="MZ Net"><i class="lucide" data-icon="wifi"></i></span>
+              <button id="notification-button" class="taskbar-button" title="Notificações" aria-label="Notificações"><i class="lucide" data-icon="bell"></i><span id="notification-badge" class="badge hidden">0</span></button>
+              <button id="clock-button" class="taskbar-clock"><strong id="taskbar-time">00:00</strong><span id="taskbar-date"></span></button>
+              <button id="power-button" class="taskbar-button power" title="Energia" aria-label="Energia"><i class="lucide" data-icon="power"></i></button>
+              <button id="show-desktop" title="Mostrar área de trabalho" aria-label="Mostrar área de trabalho"></button>
+            </footer>
+          </section>
+        </div>
+      </div>
+      <div class="notebook-camera" aria-hidden="true"></div><div class="notebook-brand" aria-hidden="true">M Z</div><div class="notebook-base" aria-hidden="true"></div>
+    </section>
+  </main>
+  <script src="screen-math.js"></script>
+  <script src="hybrid-math.js?v=1.3.3"></script>
+  <script src="surface.js?v=1.3.3"></script>
+  <script src="app.js?v=1.3.3"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+# VALIDATION 1.3.0
+UTC 2026-09-05 20:42:54
+
+## Static
+MZ Computer static checks
+  [PASS] manifest:ui/dist/index.html
+  [PASS] manifest:ui/dist/index.html
+  [PASS] manifest:ui/dist/calibration.html
+  [PASS] manifest:ui/dist/app.js
+  [PASS] manifest:ui/dist/screen-math.js
+  [PASS] manifest:ui/dist/surface.js
+  [PASS] manifest:ui/dist/desktop.css
+  [PASS] manifest:ui/dist/styles.css
+  [PASS] manifest:config.lua
+  [PASS] manifest:shared/constants.lua
+  [PASS] manifest:shared/validation.lua
+  [PASS] manifest:shared/screen_geometry.lua
+  [PASS] manifest:shared/contracts.lua
+  [PASS] manifest:server/crypto.lua
+  [PASS] manifest:server/migrations.lua
+  [PASS] manifest:server/repository.lua
+  [PASS] manifest:server/identity.lua
+  [PASS] manifest:server/audit.lua
+  [PASS] manifest:server/devices.lua
+  [PASS] manifest:server/terminal_editor.lua
+  [PASS] manifest:server/sessions.lua
+  [PASS] manifest:server/permissions.lua
+  [PASS] manifest:server/apps.lua
+  [PASS] manifest:server/sites.lua
+  [PASS] manifest:server/accounts.lua
+  [PASS] manifest:server/content.lua
+  [PASS] manifest:server/notifications.lua
+  [PASS] manifest:server/auth.lua
+  [PASS] manifest:server/bridge.lua
+  [PASS] manifest:server/integrations.lua
+  [PASS] manifest:server/exports.lua
+  [PASS] manifest:server/main.lua
+  [PASS] manifest:client/state.lua
+  [PASS] manifest:client/device.lua
+  [PASS] manifest:client/world.lua
+  [PASS] manifest:client/terminal_editor.lua
+  [PASS] manifest:client/interaction.lua
+  [PASS] manifest:client/nui.lua
+  [PASS] manifest:client/main.lua
+  [PASS] no plaintext bcrypt placeholder
+  [PASS] password KDF present
+  [PASS] session token removed before NUI
+  [PASS] server-side inventory handler
+  [PASS] source-bound session validation
+  [PASS] blocked-scheme:http:
+  [PASS] blocked-scheme:https:
+  [PASS] blocked-scheme:javascript:
+  [PASS] blocked-scheme:file:
+  [PASS] blocked-scheme:data:
+  [PASS] blocked-scheme:cfx-nui:
+  [PASS] no external iframe
+  [PASS] no window.open
+  [PASS] no eval
+  [PASS] reference image exists
+  [PASS] runtime overlay exists
+  [PASS] reference image 1920x1080
+  [PASS] overlay 1920x1080
+  [PASS] screen aperture transparent
+  [PASS] bezel remains visible
+  [PASS] sql:mz_computer_accounts
+  [PASS] sql:mz_computer_devices
+  [PASS] sql:mz_computer_sessions
+  [PASS] sql:mz_computer_notes
+  [PASS] sql:mz_computer_documents
+  [PASS] sql:mz_computer_notifications
+
+PASS: 65 checks
+status=0
+
+## Screen math
+PASS: screen projection, perspective, bounds and degenerate surfaces
+status=0
+
+## Lua syntax all files
+checked=37 status=0
+
+## JS syntax
+status=0
+
+## tests/terminal_editor.test.lua
+[mz_computer] Falha no cadastro de tela: tests/terminal_editor.test.lua:47: SQL unavailable
+[mz_computer] Falha no cadastro de tela: server/terminal_editor.lua:145: Nao foi possivel gravar test/resources/mz_computer/terminals.json (retorno=false). Verifique a permissao de escrita da pasta do recurso.
+[mz_computer] Falha no cadastro de tela: server/terminal_editor.lua:145: Nao foi possivel gravar test/resources/mz_computer/terminals.json (retorno=0). Verifique a permissao de escrita da pasta do recurso.
+[mz_computer] Falha no cadastro de tela: server/terminal_editor.lua:145: O conteudo de terminals.json nao confere apos a gravacao.
+PASS: screen geometry, permissions, distance, invalid values, SQL/write failures, persistence, device lease and removal
+status=0
+
+## tests/editor_client.test.lua
+PASS: editor permission, selector contract, request isolation, cancellation, generation and resource cleanup
+status=0
+
+## tests/world_lifecycle.test.lua
+[mz_computer] 3D display failed: tests/world_lifecycle.test.lua:60: simulated renderer failure
+PASS: 3D open/draw, stale input, close, freeze ownership, timeout, exception, replacement and stop cleanup
+status=0
+
+## tests/profile_contract.test.lua
+PASS: authenticated profile, app permission, source binding and private-field filtering
+status=0
+
+## inventory_handoff
+cannot open ../mz_inventory/client/state.lua: No such file or directory
+status=1 (expected unavailable in isolated mz_computer ZIP because ../mz_inventory is absent)
+
+## Playwright/browser
+status=1 (Playwright package is not installed in this container)

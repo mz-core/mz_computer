@@ -1,0 +1,35 @@
+MZ Computer 1.3.2 - validation
+Date: 2026-09-05
+
+Implemented:
+- /mztela live first-person simulation after screen mapping
+- WASD + mouse gameplay-camera calibration while DUI stays on the mapped monitor
+- playerAnchor + relative heading capture
+- captured first-person eye offsets, looked-at screen point and gameplay FOV
+- immediate scripted-runtime camera test before save
+- R returns from runtime test to live first-person recalibration
+- interactionAnchor defaults to the captured playerAnchor position
+- previous gameplay camera mode restored on editor cleanup
+- optional captured camera fields bounded and persisted server-side
+- legacy terminals remain compatible via Config.WorldDisplay defaults
+
+Passed:
+- tests/static_check.py: 65/65 PASS
+- tests/editor_client.test.lua: PASS
+- tests/profile_contract.test.lua: PASS
+- tests/terminal_editor.test.lua: PASS
+- tests/world_lifecycle.test.lua: PASS
+  Includes live first-person transition, pose/FOV capture, scripted test reproduction,
+  return-to-calibration and camera-mode restoration.
+- tests/screen_math.test.cjs: PASS
+- Lua syntax/load check: 37 files PASS
+- JS/CJS syntax: PASS
+
+Environment limitations:
+- tests/inventory_handoff.test.lua requires ../mz_inventory, which is not part of this mz_computer ZIP.
+- Browser/Chromium tests require the Playwright package, which is not installed in this environment.
+- Final visual comfort/collision still requires an in-game FiveM/MLO check.
+
+Graphify:
+- graphify-out was preserved from the supplied package and was not edited by hand.
+  Rebuild the mz_computer graph incrementally in the official workspace after integration.

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR" style="background:#071017">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>MZ OS · World Display</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071017;color:#eef5f8;font-family:Inter,"Segoe UI",Arial,sans-serif}
+body{display:grid;place-items:center;background:radial-gradient(circle at 50% 34%,#173c42 0,#08141d 42%,#04090e 100%)}
+body:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0 45%,rgba(96,230,201,.035) 45% 46%,transparent 46% 100%);background-size:84px 84px;opacity:.55}
+main{position:relative;text-align:center}.mark{width:76px;height:76px;margin:0 auto 18px;border-radius:22px;display:grid;place-items:center;font-size:27px;font-weight:900;letter-spacing:-2px;background:linear-gradient(140deg,#60e6c9,#2196a6);color:#031012;box-shadow:0 12px 34px rgba(56,199,173,.24)}
+h1{margin:0;font-size:25px;letter-spacing:.16em}.status{margin:12px 0 0;color:#91a6b4;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.network{position:absolute;left:22px;bottom:18px;color:#78919f;font-size:11px;letter-spacing:.1em}.clock{position:absolute;right:22px;bottom:18px;color:#91a6b4;font-size:12px}.dot{display:inline-block;width:6px;height:6px;margin-right:7px;border-radius:50%;background:#60e6c9;box-shadow:0 0 12px #60e6c988}
+</style>
+</head>
+<body>
+<main><div class="mark">MZ</div><h1>MZ OS</h1><p class="status"><span class="dot"></span>Terminal ativo</p></main>
+<div class="network" id="network">MZ NET</div><div class="clock" id="clock">00:00</div>
+<script>
+(()=>{'use strict';
+const id=new URLSearchParams(location.search).get('surface');
+const resource=typeof GetParentResourceName==='function'?GetParentResourceName():'mz_computer';
+const post=(name,payload={})=>fetch(`https://${resource}/${name}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});
+const tick=()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})};tick();setInterval(tick,30000);
+addEventListener('message',event=>{const msg=event.data||{};if(msg.type==='computer:open'){document.getElementById('network').textContent=String(msg.network||'MZ Net').toUpperCase();requestAnimationFrame(()=>requestAnimationFrame(()=>post('surfaceVisible',{id})))}});
+if(id)post('surfaceReady',{id});
+})();
+</script>
+</body></html>

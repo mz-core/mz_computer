@@ -1,0 +1,36 @@
+MZ COMPUTER 1.3.3 - HYBRID NUI VALIDATION
+==========================================
+
+Validated in an isolated extracted resource copy.
+
+PASS
+- tests/static_check.py: 71 checks
+- tests/screen_math.test.cjs: projection/perspective/bounds
+- tests/hybrid_projection.test.cjs: 4-corner homography -> CSS matrix3d
+- tests/profile_contract.test.lua
+- tests/editor_client.test.lua
+- tests/terminal_editor.test.lua
+- tests/world_lifecycle.test.lua
+- 37 Lua files parsed successfully with LuaTeX loadfile
+- 11 JS/CJS files passed node --check
+- Hybrid runtime uses display.html for the world DUI
+- Hybrid runtime starts ordinary NUI as the focused interaction layer
+- Hybrid surfaceInput bridge rejects input instead of forwarding SendDuiMouse* calls
+- Legacy interactionMode='dui' remains covered by lifecycle test
+- Notebook fallback and editor preview remain separate from hybrid runtime
+
+ENVIRONMENT LIMITATIONS
+- tests/inventory_handoff.test.lua requires ../mz_inventory and cannot run from the isolated mz_computer ZIP.
+- Playwright/Chromium automation is not installed in this environment, so browser_check.cjs,
+  calibration_browser.test.cjs, idle_transparency.test.cjs and dui_startup.test.cjs were syntax-checked
+  but not browser-executed.
+- Final visual alignment, cursor feel, CEF hit testing through CSS matrix3d, FPS and MLO occlusion must
+  still be smoke-tested inside FiveM because those depend on GTA/FiveM runtime rendering.
+
+ARCHITECTURE
+- World presentation: lightweight DUI (ui/dist/display.html)
+- Interaction: ordinary focused NUI (ui/dist/index.html)
+- Projection: ui/dist/hybrid-math.js homography -> CSS matrix3d
+- Camera/player anchors: unchanged from 1.3.2
+- mz_world_editor: unchanged
+- graphify-out: not manually regenerated
